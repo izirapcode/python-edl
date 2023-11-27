@@ -3,13 +3,12 @@
 Python EDL parsing library
 """
 import sys
-import collections
+import collections.abc
 import re
 import pprint
 import timecode
 
-__version__ = '0.1.11'
-
+from .version import __version__
 
 class List(object):
     """The EDL it self.
@@ -564,7 +563,7 @@ class Parser(object):
         stack = None
         if isinstance(input_, str):
             input_ = input_.splitlines(True)
-        if isinstance(input_, collections.Iterable):
+        if isinstance(input_, collections.abc.Iterable):
             stack = List(self.fps)
             for l in input_:
                 for m in self.get_matchers():
